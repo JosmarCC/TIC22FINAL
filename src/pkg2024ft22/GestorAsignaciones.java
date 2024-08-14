@@ -7,9 +7,6 @@ public class GestorAsignaciones extends ModeloAsignacion {
     Scanner teclado = new Scanner(System.in);
     ArrayList<Asignacion> asignacion = new ArrayList<Asignacion>();
     
-    GestorProfesores gestorProfes = new GestorProfesores();
-    GestorMaterias gestorMaterias = new GestorMaterias();
-    
     public static void main(String[] args) {
         GestorAsignaciones gestorAsignaciones = new GestorAsignaciones();
         gestorAsignaciones.menu();
@@ -20,17 +17,17 @@ public class GestorAsignaciones extends ModeloAsignacion {
         System.out.println("=====ASIGNACIONES=====");
         do {
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               *****************************
-                               6. Profesores
-                               7. Materias
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search
+                            0. Exit
+                            *****************************
+                            6. Materia
+                            7. Profesor
+                            """);
             op = teclado.next();
             System.out.println("");
             
@@ -41,8 +38,8 @@ public class GestorAsignaciones extends ModeloAsignacion {
                 case "4" -> {System.out.println("*****************************"); delete(); System.out.println("*****************************\n");}
                 case "5" -> {System.out.println("*****************************"); search(); System.out.println("*****************************\n");}
                 case "0" -> System.out.println("SALIENDO DE ASIGNACIONES...\n");
-                case "6" -> gestorProfes.menu();
-                case "7" -> gestorMaterias.menu();
+                case "6" -> gestorMaterias.menu();
+                case "7" -> gestorProfes.menu();
                 default -> System.out.println("Opcion Invalida, Por favor seleccione una opcion valida.\n");    
             }
         } while(!"0".equals(op));  
@@ -69,7 +66,6 @@ public class GestorAsignaciones extends ModeloAsignacion {
     public void create() {
         System.out.println("--Crear Asignacion--");
         this.crear();
-    
     }
     
     public void update() {
@@ -81,11 +77,10 @@ public class GestorAsignaciones extends ModeloAsignacion {
     public void delete() {
         System.out.println("---Eliminar Asignacion---");
         this.index();
-        this.borrar();
-       
+        this.borrar();  
     }
     
-        public void search() {
+    public void search() {
         System.out.println("--Buscar Asignacion--");
         
         this.asignacion = this.buscar();
@@ -101,6 +96,5 @@ public class GestorAsignaciones extends ModeloAsignacion {
                 ); 
         }
         System.out.println("=========================================================");
-    
     }
 }

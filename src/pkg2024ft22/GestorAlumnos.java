@@ -19,14 +19,14 @@ public class GestorAlumnos extends ModeloAlumno{
         System.out.println("=====ALUMNOS=====");
         do {
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search
+                            0. Exit
+                            """);
             op = teclado.next();
             System.out.println("");
             
@@ -47,18 +47,17 @@ public class GestorAlumnos extends ModeloAlumno{
         System.out.println("--Alumnos Existentes--");
         
         this.alumno = this.consulta();
-        System.out.println("==========================================================");
-        System.out.println("| ID | Nombre          | Grupo         | Descripcion     |");
-        System.out.println("==========================================================");
+        System.out.println("===============================================================");
+        System.out.println("| ID | Nombre              | Grupo          | Estatus         |");
+        System.out.println("===============================================================");
         for(Alumno temp : this.alumno) {
-            System.out.format("| %2d | %-15s| %-15s| %-15s |\n",
+            System.out.format("| %2d | %-20s| %-15s| %-15s |\n",
                 temp.getId(),
                 temp.getNombre(),
                 temp.getId_grupo(),
-                temp.getDescripcion()
-                );
+                temp.getEstatus());
         }
-        System.out.println("==========================================================");
+        System.out.println("===============================================================");
     }
     
     public void create() {
@@ -84,18 +83,17 @@ public class GestorAlumnos extends ModeloAlumno{
         System.out.println("--Buscar Alumno--");
         
         this.alumno = this.buscar();
-        System.out.println("==========================================================");
-        System.out.println("| ID | Nombre          | Grupo         | Descripcion     |");
-        System.out.println("==========================================================");
+        System.out.println("===============================================================");
+        System.out.println("| ID | Nombre              | Grupo          | Estatus         |");
+        System.out.println("===============================================================");
         for(Alumno temp : this.alumno) {
-            System.out.format("| %2d | %-15s| %-15s| %-15s |\n",
+            System.out.format("| %2d | %-20s| %-15s| %-15s |\n",
                 temp.getId(),
                 temp.getNombre(),
                 temp.getId_grupo(),
-                temp.getDescripcion()
-                );
+                temp.getEstatus());
         }
-        System.out.println("==========================================================");
+        System.out.println("===============================================================");
     
     }
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ModeloCC extends Conexion {
-
     Scanner teclado = new Scanner(System.in);
     CC cc;
     ArrayList<CC> carteraCC = new ArrayList<CC>();

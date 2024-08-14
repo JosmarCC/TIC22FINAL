@@ -17,14 +17,15 @@ public class GestorCiclos extends ModeloCiclo {
         do {
             
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search
+                            0. Exit
+
+                            """);
             op = teclado.next();
             System.out.println("");
             

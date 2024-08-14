@@ -6,7 +6,7 @@ public class Asignacion {
     String id_materia;
     String id_profesor;
 
-    public Asignacion (int id, String idGrupo, String idMateria, String idProfesor) {
+    Asignacion (int id, String idGrupo, String idMateria, String idProfesor) {
         this.id = id;
         this.id_grupo = idGrupo;
         this.id_materia = idMateria;

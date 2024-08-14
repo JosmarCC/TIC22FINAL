@@ -20,7 +20,7 @@ public class ModeloMateria extends Conexion {
             this.rs = this.ps.executeQuery();
 
             while (rs.next()) {
-                this.materia = new Materia(rs.getInt("id"), rs.getString("nombre"), rs.getInt("unidad"));
+                this.materia = new Materia(rs.getInt("id"), rs.getString("nombre"));
                 this.carteraMaterias.add(materia);
             }
         } catch (SQLException ex) {
@@ -34,15 +34,11 @@ public class ModeloMateria extends Conexion {
 
         try {
             this.carteraMaterias.clear();
-            this.ps = this.cnx.prepareStatement("INSERT INTO materias (nombre, unidad) VALUES (?, ?)");
+            this.ps = this.cnx.prepareStatement("INSERT INTO materias (nombre) VALUES (?)");
 
             System.out.println("Ingrese el nombre de la nueva Materia: ");
             String nombreMateria = teclado.next();
             ps.setString(1, nombreMateria);
-            
-            System.out.println("Ingrese el numero de la Unidad: ");
-            String unidad = teclado.next();
-            ps.setString(2, unidad);
 
             int filasCreadas = ps.executeUpdate();
             if (filasCreadas > 0) {
@@ -60,20 +56,15 @@ public class ModeloMateria extends Conexion {
         this.conectar();
 
         try {
-            this.ps = this.cnx.prepareStatement("UPDATE materias SET nombre = (?), unidad = (?)  WHERE id = (?)");
+            this.ps = this.cnx.prepareStatement("UPDATE materias SET nombre = (?) WHERE id = (?)");
 
             System.out.println("Ingrese el ID de la Materia a actualizar: ");
             int idMateria = teclado.nextInt();
-            ps.setInt(3, idMateria);
+            ps.setInt(2, idMateria);
 
             System.out.println("Ingrese el nuevo nombre de la Materia: ");
             String nuevoNombre = teclado.next();
-            ps.setString(1, nuevoNombre);
-            
-            System.out.println("Ingrese la nueva unidad de la Materia: ");
-            String nuevoUnidad = teclado.next();
-            ps.setString(2, nuevoUnidad);
-
+            ps.setString(1, nuevoNombre);            
 
             int filasActualizadas = ps.executeUpdate();
             if (filasActualizadas > 0) {
@@ -127,7 +118,7 @@ public class ModeloMateria extends Conexion {
             
             System.out.println("Coincidencias...");
             while (this.rs.next()) {    
-                this.materia = new Materia(rs.getInt("id"), rs.getString("nombre"), rs.getInt("unidad"));
+                this.materia = new Materia(rs.getInt("id"), rs.getString("nombre"));
                 this.carteraMaterias.add(materia);
                 encontrado = true;
             }

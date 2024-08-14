@@ -1,14 +1,12 @@
 package pkg2024ft22;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestorGrupos extends ModeloGrupo {
-    
+public class GestorGrupos extends ModeloGrupo { 
     Scanner teclado = new Scanner(System.in);
     ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-    
-    public static void main(String[] args) {
+        
+    public static void main(String[] args) {   
         GestorGrupos gg = new GestorGrupos();
         gg.menu();
     }
@@ -19,14 +17,17 @@ public class GestorGrupos extends ModeloGrupo {
         do {
             
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search                              
+                            0. Exit
+                            *****************************
+                            6. Ciclo_Cuatri
+                            7. Carrera
+                            """);
             op = teclado.next();
             System.out.println("");
             
@@ -37,6 +38,8 @@ public class GestorGrupos extends ModeloGrupo {
                 case "4" -> {System.out.println(""); delete(); System.out.println("\n");}
                 case "5" -> {System.out.println(""); search(); System.out.println("\n");}
                 case "0" -> System.out.println("SALIENDO DE GRUPOS...\n");
+                case "6" -> gestorCC.menu();
+                case "7" -> gestorCarreras.menu();
                 default -> System.out.println("Opcion Invalida, Por favor seleccione una opcion valida.");    
             }
         } while(!"0".equals(op));
@@ -48,18 +51,18 @@ public class GestorGrupos extends ModeloGrupo {
         System.out.println("------Grupos Existentes------");
         this.grupos = this.consulta();
         
-        System.out.println("===============================================");
-        System.out.println("| ID | Grupo          | ID CC    | Carrera    |");
-        System.out.println("===============================================");
+        System.out.println("===========================================================");
+        System.out.println("| ID | Grupo          | Ciclo_Cuatrimestre   | Carrera    |");
+        System.out.println("===========================================================");
         for(Grupo temp : this.grupos) {
-            System.out.format("| %2d | %-15s| %-8s | %-10s |\n",
+            System.out.format("| %2d | %-15s| %-20s | %-10s |\n",
                     temp.getId(),
                     temp.getNombre(),
-                    temp.getId_ciclo(),
+                    temp.getId_CC(),
                     temp.getId_carrera()
                     );     
         }
-        System.out.println("===============================================");
+        System.out.println("===========================================================");
     }
     
     public void create() {
@@ -85,17 +88,17 @@ public class GestorGrupos extends ModeloGrupo {
         System.out.println("---------Buscar Grupo--------");
         this.grupos = this.buscar();
         
-        System.out.println("===============================================");
-        System.out.println("| ID | Grupo          | ID CC    | Carrera    |");
-        System.out.println("===============================================");
+        System.out.println("===========================================================");
+        System.out.println("| ID | Grupo          | Ciclo_Cuatrimestre   | Carrera    |");
+        System.out.println("===========================================================");
         for(Grupo temp : this.grupos) {
-            System.out.format("| %2d | %-15s| %-8s | %-10s |\n",
+            System.out.format("| %2d | %-15s| %-20s | %-10s |\n",
                     temp.getId(),
                     temp.getNombre(),
-                    temp.getId_ciclo(),
+                    temp.getId_CC(),
                     temp.getId_carrera()
                     );     
         }
-        System.out.println("===============================================");
+        System.out.println("===========================================================");
     }
 }

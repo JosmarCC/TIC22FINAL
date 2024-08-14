@@ -4,13 +4,13 @@ public class Alumno {
     int id;
     String nombre;
     String id_grupo;
-    String descripcion;
+    String estatus;
     
-    Alumno (int id, String nombre, String idGrupo, String des) {
+    Alumno (int id, String nombre, String idGrupo, String est) {
         this.id = id;
         this.nombre = nombre;
         this.id_grupo = idGrupo;
-        this.descripcion = des;
+        this.estatus = est;
     }
     
     public int getId() {
@@ -36,13 +36,13 @@ public class Alumno {
     public void setId_grupo(String id_grupo) {
         this.id_grupo = id_grupo;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
     
+    
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    } 
 }

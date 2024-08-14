@@ -3,13 +3,21 @@ package pkg2024ft22;
 public class Grupo {
     int id;
     String nombre;
-    int id_ciclo;
+    String id_CC;
     String id_carrera;
+
+    public String getId_CC() {
+        return id_CC;
+    }
+
+    public void setId_CC(String id_CC) {
+        this.id_CC = id_CC;
+    }
     
-    Grupo(int id, String nombre, int idCiclo, String idCarrera){
+    Grupo(int id, String nombre, String idCC, String idCarrera){
         this.id = id;
         this.nombre = nombre;
-        this.id_ciclo = idCiclo;
+        this.id_CC = idCC;
         this.id_carrera = idCarrera;
     }
     
@@ -27,14 +35,6 @@ public class Grupo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getId_ciclo() {
-        return id_ciclo;
-    }
-
-    public void setId_ciclo(int id_ciclo) {
-        this.id_ciclo = id_ciclo;
     }
 
     public String getId_carrera() {

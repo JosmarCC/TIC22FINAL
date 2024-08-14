@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ModeloAsignacion extends Conexion{
-
     Scanner teclado = new Scanner(System.in);
     Asignacion asignacion;
     ArrayList<Asignacion> carteraAsignacion = new ArrayList<Asignacion>();
     
-    GestorGrupos gestorGrupo = new GestorGrupos();
-    GestorMaterias gestorMateria = new GestorMaterias();
-    GestorProfesores gestorProfe = new GestorProfesores();
+    GestorGrupos gestorGrupos = new GestorGrupos();
+    GestorMaterias gestorMaterias = new GestorMaterias();
+    GestorProfesores gestorProfes = new GestorProfesores();
     
     public ArrayList consulta() {
         this.conectar();
@@ -42,20 +41,20 @@ public class ModeloAsignacion extends Conexion{
         this.conectar();
         try {
             this.ps = this.cnx.prepareStatement("INSERT INTO asignaciones (id_grupo, id_materia, id_profe) VALUES (?, ?, ?)");
-            gestorGrupo.index();
+            gestorGrupos.index();
 
             System.out.println("Ingrese el ID del Grupo a utilizar"); 
             int idGrupo = teclado.nextInt();
             this.ps.setInt(1, idGrupo);
             System.out.println("");
 
-            gestorMateria.index();
+            gestorMaterias.index();
             System.out.println("Ingrese el ID de la Materia a utilizar");
             int idMateria = teclado.nextInt();           
             this.ps.setInt(2, idMateria);
             System.out.println("");
             
-            gestorProfe.index();
+            gestorProfes.index();
             System.out.println("Ingrese el ID del Profesor a utilizar");
             int idProfe = teclado.nextInt();
             this.ps.setInt(3, idProfe);
@@ -84,19 +83,19 @@ public class ModeloAsignacion extends Conexion{
             System.out.println("");
             ps.setInt(4, idActu);
 
-            gestorGrupo.index();
+            gestorGrupos.index();
             System.out.println("Ingrese el ID del Grupo a utilizar");
             int idGrupo = teclado.nextInt();
             System.out.println("");
             this.ps.setInt(1, idGrupo);
 
-            gestorMateria.index();
+            gestorMaterias.index();
             System.out.println("Ingrese el ID de la Materia a utilizar");
             int idMateria = teclado.nextInt();
             System.out.println("");
             this.ps.setInt(2, idMateria);
             
-            gestorProfe.index();
+            gestorProfes.index();
             System.out.println("Ingrese el ID del Profesor a utilizar");
             int idProfe = teclado.nextInt();
             System.out.println("");

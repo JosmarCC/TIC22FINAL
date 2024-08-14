@@ -18,14 +18,14 @@ public class GestorMaterias extends ModeloMateria {
         do {
             
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search
+                            0. Exit
+                            """);
             op = teclado.next();
             System.out.println("");
             
@@ -46,17 +46,16 @@ public class GestorMaterias extends ModeloMateria {
         System.out.println("-----Materias Existentes-----");
         this.materias = this.consulta();
         
-        System.out.println("================================");
-        System.out.println("| ID | Materia        | Unidad |");
-        System.out.println("================================");
+        System.out.println("=======================");
+        System.out.println("| ID | Materia        |");
+        System.out.println("=======================");
         for(Materia temp : this.materias) {
-            System.out.format("| %2d | %-15s| %-6s |\n",
+            System.out.format("| %2d | %-15s|\n",
                     temp.getId(),
-                    temp.getNombre(),
-                    temp.getUnidad()
+                    temp.getNombre()
                     );     
         }
-        System.out.println("================================");
+        System.out.println("=======================");
     }
     
     public void create() {
@@ -91,6 +90,5 @@ public class GestorMaterias extends ModeloMateria {
                 );
         }
         System.out.println("=======================");
-    }
-    
+    }    
 }

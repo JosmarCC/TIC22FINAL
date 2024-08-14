@@ -17,7 +17,7 @@ public class ModeloAlumno extends Conexion {
         try {
             this.carteraAlumnos.clear();
             this.ps = this.cnx.prepareStatement("""
-                                                SELECT alumnos.id, alumnos.nombre, grupos.nombre AS nombreGrupo, alumnos.descripcion
+                                                SELECT alumnos.id, alumnos.nombre, grupos.nombre AS nombreGrupo, alumnos.estatus
                                                 FROM alumnos
                                                 INNER JOIN grupos ON alumnos.id_grupo = grupos.id
                                                 ORDER BY alumnos.id ASC;
@@ -25,7 +25,7 @@ public class ModeloAlumno extends Conexion {
             this.rs = this.ps.executeQuery();
 
             while (rs.next()) {
-                this.alumno = new Alumno(rs.getInt("id"), rs.getString("nombre"), rs.getString("nombreGrupo"), rs.getString("descripcion"));
+                this.alumno = new Alumno(rs.getInt("id"), rs.getString("nombre"), rs.getString("nombreGrupo"), rs.getString("estatus"));
                 this.carteraAlumnos.add(alumno);
             }
         } catch (SQLException ex) {
@@ -37,7 +37,7 @@ public class ModeloAlumno extends Conexion {
     public void crear() {
         this.conectar();
         try {
-            this.ps = this.cnx.prepareStatement("INSERT INTO alumnos (nombre, id_grupo, descripcion) VALUES (?, ?, ?)");
+            this.ps = this.cnx.prepareStatement("INSERT INTO alumnos (nombre, id_grupo, estatus) VALUES (?, ?, ?)");
             
 
             System.out.println("Ingrese el nombre del nuevo Alumno");
@@ -50,9 +50,9 @@ public class ModeloAlumno extends Conexion {
             int idGrupo = teclado.nextInt();
             this.ps.setInt(2, idGrupo);
             
-            System.out.println("Agregre una breve descripcion al Alumno");
-            String des = teclado.next();
-            this.ps.setString(3, des);  
+            System.out.println("Ingrese el Estatus del alumno al Alumno");
+            String est = teclado.next();
+            this.ps.setString(3, est);  
             
             int filasCreadas = ps.executeUpdate();
             if (filasCreadas > 0) {
@@ -70,7 +70,7 @@ public class ModeloAlumno extends Conexion {
         this.conectar();
 
         try {
-            this.ps = this.cnx.prepareStatement("UPDATE alumnos SET nombre = ?, id_grupo = ?, descripcion = ? WHERE id = ?");
+            this.ps = this.cnx.prepareStatement("UPDATE alumnos SET nombre = ?, id_grupo = ?, estatus = ? WHERE id = ?");
 
             System.out.println("Ingrese el ID del Alumno a actualizar: ");
             int idActu = teclado.nextInt();
@@ -88,7 +88,7 @@ public class ModeloAlumno extends Conexion {
             System.out.println("");
             this.ps.setInt(2, idGrupo);
             
-            System.out.println("Ingrese la nueva Descripcion");
+            System.out.println("Ingrese el nuevo Estatus");
             String des = teclado.next();
             this.ps.setString(3, des);
 
@@ -133,7 +133,7 @@ public class ModeloAlumno extends Conexion {
         try {
             this.carteraAlumnos.clear();
              this.ps = this.cnx.prepareStatement("""
-                                                SELECT alumnos.id, alumnos.nombre, grupos.nombre AS nombreGrupo, alumnos.descripcion
+                                                SELECT alumnos.id, alumnos.nombre, grupos.nombre AS nombreGrupo, alumnos.estatus
                                                 FROM alumnos
                                                 INNER JOIN grupos ON alumnos.id_grupo = grupos.id
                                                 WHERE alumnos.nombre LIKE ?
@@ -148,7 +148,7 @@ public class ModeloAlumno extends Conexion {
             this.rs = this.ps.executeQuery();
             System.out.println("Coincidencias...");
             while (rs.next()) {
-                this.alumno = new Alumno(rs.getInt("id"), rs.getString("nombre"), rs.getString("nombreGrupo"), rs.getString("descripcion"));
+                this.alumno = new Alumno(rs.getInt("id"), rs.getString("nombre"), rs.getString("nombreGrupo"), rs.getString("estatus"));
                 this.carteraAlumnos.add(alumno);
             }
         } catch (SQLException ex) {

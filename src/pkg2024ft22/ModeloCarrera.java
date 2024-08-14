@@ -109,7 +109,7 @@ public class ModeloCarrera extends Conexion {
         try {
             this.carteraCarrera.clear();
             this.ps = this.cnx.prepareStatement("SELECT * FROM carreras WHERE nombre LIKE ?");
-            ps.setString(1, carreraBuscada);
+            ps.setString(1, "%" + carreraBuscada + "%");
             this.rs = this.ps.executeQuery();
 
             boolean encontrado = false;

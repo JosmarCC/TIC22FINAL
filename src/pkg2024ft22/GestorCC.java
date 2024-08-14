@@ -5,9 +5,6 @@ import java.util.Scanner;
 public class GestorCC extends ModeloCC {
     Scanner teclado = new Scanner(System.in);
     ArrayList<CC> cc = new ArrayList<CC>();
-    
-    GestorCiclos gestorCiclos = new GestorCiclos();
-    GestorCuatrimestres gestorCuatris = new GestorCuatrimestres();
         
     public static void main(String[] args) {
         GestorCC gestorCC = new GestorCC();
@@ -19,17 +16,17 @@ public class GestorCC extends ModeloCC {
         System.out.println("=====CICLO_CUATRIMESTRE=====");
         do {
             System.out.print("""
-                               Seleccione la opcion deseada: 
-                               1. Index
-                               2. Create  
-                               3. Update
-                               4. Delete
-                               5. Search
-                               0. Exit
-                               *****************************
-                               6. Ciclos
-                               7. Cuatrimestres                             
-                               """);
+                            Seleccione la opcion deseada: 
+                            1. Index
+                            2. Create  
+                            3. Update
+                            4. Delete
+                            5. Search
+                            0. Exit
+                            *****************************
+                            6. Ciclos
+                            7. Cuatrimestres                             
+                            """);
             op = teclado.next();
             System.out.println("");
             
@@ -99,7 +96,5 @@ public class GestorCC extends ModeloCC {
         System.out.println("--Actualizar Ciclo_Cuatrimestre--");
         this.index();
         this.actualizar();
-    }
-    
-    
+    }   
 }

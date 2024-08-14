@@ -3,12 +3,10 @@ package pkg2024ft22;
 public class Materia {
     int id;
     String nombre;
-    int unidad;
     
-    Materia (int id, String nombre, int unidad) {
+    Materia (int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.unidad = unidad;
     }
     
     public int getId() {
@@ -26,14 +24,4 @@ public class Materia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getUnidad() {
-        return unidad;
-    }
-
-    public void setUnidad(int unidad) {
-        this.unidad = unidad;
-    }
-    
-    
 }

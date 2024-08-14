@@ -4,7 +4,7 @@ public class Carrera {
     String nombre;
     int id;
     
-    Carrera(int id, String nuevoNombre) {
+    Carrera (int id, String nuevoNombre) {
         this.id = id;
         this.nombre = nuevoNombre;
     }

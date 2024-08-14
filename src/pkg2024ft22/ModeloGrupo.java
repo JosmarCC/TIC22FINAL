@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class ModeloGrupo extends Conexion {
     Scanner teclado = new Scanner(System.in);
-    Grupo grupo;
-    
+    Grupo grupo; 
     ArrayList<Grupo> carteraGrupos = new ArrayList<Grupo>();
-    GestorCarreras gestorCarrera = new GestorCarreras();
+    
+    GestorCarreras gestorCarreras = new GestorCarreras();
     GestorCC gestorCC = new GestorCC();
     
     public ArrayList consulta() {
@@ -17,15 +17,18 @@ public class ModeloGrupo extends Conexion {
         try {
             this.carteraGrupos.clear();
             this.ps = this.cnx.prepareStatement("""
-                                                SELECT grupos.id, grupos.nombre, grupos.id_ciclo_cuatri, carreras.nombre AS nombreCarrera
+                                                SELECT grupos.id, grupos.nombre, CONCAT(ciclos.nombre, ' - ', cuatrimestres.nombre) AS CicloCuatri, carreras.nombre AS Carrera
                                                 FROM grupos
                                                 INNER JOIN carreras ON grupos.id_carrera = carreras.id
-                                                ORDER BY grupos.id ASC;
+                                                INNER JOIN ciclo_cuatri ON grupos.id_ciclo_cuatri = ciclo_cuatri.id                                                 
+                                                INNER JOIN ciclos ON ciclo_cuatri.id_ciclo = ciclos.id                                                 
+                                                INNER JOIN cuatrimestres ON ciclo_cuatri.id_cuatri = cuatrimestres.id                                                  
+                                                ORDER BY grupos.id ASC; 
                                                 """);
             this.rs = this.ps.executeQuery();
 
             while (rs.next()) {
-                this.grupo = new Grupo(rs.getInt("id"), rs.getString("nombre"), rs.getInt("id_ciclo_cuatri"), rs.getString("nombreCarrera"));
+                this.grupo = new Grupo(rs.getInt("id"), rs.getString("nombre"), rs.getString("CicloCuatri"), rs.getString("Carrera"));
                 this.carteraGrupos.add(grupo);
             }
         } catch (SQLException ex) {
@@ -50,7 +53,7 @@ public class ModeloGrupo extends Conexion {
             this.ps.setInt(2, idCC);
             System.out.println("");
               
-            gestorCarrera.index();
+            gestorCarreras.index();
             System.out.println("Ingrese el ID de la Carrera a utilizar"); 
             int idCarrera = teclado.nextInt();
             System.out.println("");
@@ -90,7 +93,7 @@ public class ModeloGrupo extends Conexion {
             this.ps.setInt(2, idCC);
             System.out.println("");
             
-            gestorCarrera.index();
+            gestorCarreras.index();
             System.out.println("Ingrese el ID de la Carrera a utilizar");
             int idCarrera = teclado.nextInt();
             this.ps.setInt(3, idCarrera);
@@ -140,11 +143,14 @@ public class ModeloGrupo extends Conexion {
             String res = teclado.next();
 
             this.ps = this.cnx.prepareStatement("""
-                                                SELECT grupos.id, grupos.nombre, grupos.id_ciclo_cuatri, carreras.nombre AS nombreCarrera
+                                                SELECT grupos.id, grupos.nombre, CONCAT(ciclos.nombre, ' - ', cuatrimestres.nombre) AS CicloCuatri, carreras.nombre AS Carrera
                                                 FROM grupos
                                                 INNER JOIN carreras ON grupos.id_carrera = carreras.id
+                                                INNER JOIN ciclo_cuatri ON grupos.id_ciclo_cuatri = ciclo_cuatri.id                                                 
+                                                INNER JOIN ciclos ON ciclo_cuatri.id_ciclo = ciclos.id                                                 
+                                                INNER JOIN cuatrimestres ON ciclo_cuatri.id_cuatri = cuatrimestres.id
                                                 WHERE grupos.nombre LIKE ?
-                                                ORDER BY grupos.id ASC;
+                                                ORDER BY grupos.id ASC; 
                                                 """);
             ps.setString(1, "%" + res + "%");
             System.out.println("");
@@ -152,7 +158,7 @@ public class ModeloGrupo extends Conexion {
             this.rs = this.ps.executeQuery();
             System.out.println("Coincidencias...");
             while (rs.next()) {
-                this.grupo = new Grupo(rs.getInt("id"), rs.getString("nombre"), rs.getInt("id_ciclo_cuatri"), rs.getString("nombreCarrera"));
+                this.grupo = new Grupo(rs.getInt("id"), rs.getString("nombre"), rs.getString("CicloCuatri"), rs.getString("Carrera"));
                 this.carteraGrupos.add(grupo);
             }
         } catch (SQLException ex) {
